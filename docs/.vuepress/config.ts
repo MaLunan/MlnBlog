@@ -329,9 +329,9 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
       {
         choosen: 'gitalk',
         options: {
-          clientID: 'vKAf9k4AkatvGaT2ta1kYjDh-gzGzoHsz',
-          clientSecret: 'XNfhZAy1rSb2jnKHXhWy8sKs',
-          repo: 'MaLunan.github.io', // GitHub 仓库
+          clientID: '9183709a1fd1c9d73479',
+          clientSecret: '488d91a822d4b60a9263d12ae582b8301261ea2a',
+          repo: 'malunan.github.io', // GitHub 仓库
           owner: 'MaLunan', // GitHub仓库所有者
           admin: ['MaLunan'], // 对仓库有写权限的人
           // distractionFreeMode: true,
