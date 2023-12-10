@@ -10,6 +10,7 @@ npm run build
 cd docs/.vuepress/dist
 
 # github
+echo 'www.zmln1021.cn' > CNAME
 git init
 git add -A
 git commit -m 'deploy'
