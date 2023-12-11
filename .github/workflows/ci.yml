@@ -18,15 +18,33 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-
-    steps:
-      - name: Checkout # 步骤1
-        uses: actions/checkout@v1 # 使用的动作。格式：userName/repoName。作用：检出仓库，获取源码。 官方actions库：https://github.com/actions
-      - name: Use Node.js ${{ matrix.node-version }} # 步骤2
-        uses: actions/setup-node@v1 # 作用：安装nodejs
-        with:
-          node-version: ${{ matrix.node-version }} # 版本
-      - name: Build-and-deploy # 步骤3
-        env: # 设置环境变量
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
-        run: npm install && npm run deploy # 执行的命令
+        steps:
+          - name: Checkout # 步骤1
+            uses: actions/checkout@v1 # 使用的动作。格式：userName/repoName。作用：检出仓库，获取源码。 官方actions库：https://github.com/actions
+          - name: Use Node.js ${{ matrix.node-version }} # 步骤2
+            uses: actions/setup-node@v3 # 作用：安装nodejs
+            with:
+              node-version: ${{ matrix.node-version }} # 版本
+          - name: Build-and-deploy # 步骤3
+            run: |
+              remote_addr=`git remote get-url --push origin`
+              commit_info=`git describe --all --always --long`
+              dist_path=docs/.vuepress/dist
+              user_name=`git log -1 --pretty=format:'%an'`
+              user_email=`git log -1 --pretty=format:'%ae'`
+              deploy_branch=master
+              yarn
+              yarn build
+              cd $dist_path
+              echo 'www.zmln1021.cn' > CNAME
+              git config --global init.defaultBranch $deploy_branch
+              git init
+              git config user.name ${user_name}
+              git config user.email ${user_email}
+              git add -A
+              git commit -m "auto deploy, $commit_info"
+              remote_addr=https://github.com/MaLunan/malunan.github.io.git
+              git remote add origin ${remote_addr}
+              git push -f $remote_addr HEAD:$deploy_branch  # 推送到github $deploy_branch分支
+              cd -
+              rm -rf $dist_path

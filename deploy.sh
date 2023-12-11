@@ -16,15 +16,8 @@ npm run build
 cd $dist_path
 
 echo 'www.zmln1021.cn' > CNAME
-if [ -z "$GITHUB_TOKEN" ]; then
-  msg='deploy'
-  push_addr=https://github.com/MaLunan/malunan.github.io.git
-else
-  msg='来自github action的自动部署'
-  push_addr=https://malunan:${GITHUB_TOKEN}@github.com/MaLunan/malunan.github.io.git
-  git config --global user.name "malunan"
-  git config --global user.email "723325701@qq.com"
-fi
+
+push_addr=https://github.com/MaLunan/malunan.github.io.git
 git init
 git add -A
 git commit -m "deploy, $commit_info"
