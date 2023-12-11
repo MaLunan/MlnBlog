@@ -28,23 +28,28 @@ jobs:
           node-version: ${{ matrix.node-version }} # 版本
       - name: Build-and-deploy # 步骤3
         run: |
-          commit_info=`git describe --all --always --long`
-          dist_path=docs/.vuepress/dist
-          user_name=`git log -1 --pretty=format:'%an'`
-          user_email=`git log -1 --pretty=format:'%ae'`
-          deploy_branch=master
+          $commit_info = $(git describe --all --always --long)
+          $dist_path = "docs/.vuepress/dist"
+          $user_name = $(git log -1 --pretty=format:'%an')
+          $user_email = $(git log -1 --pretty=format:'%ae')
+          $deploy_branch = "master"
+
           yarn
           yarn build
-          cd $dist_path
+
+          Set-Location -Path $dist_path
           echo 'www.zmln1021.cn' > CNAME
+
           git config --global init.defaultBranch $deploy_branch
           git init
-          git config user.name ${user_name}
-          git config user.email ${user_email}
+          git config user.name $user_name
+          git config user.email $user_email
           git add -A
           git commit -m "auto deploy, $commit_info"
-          remote_addr=https://github.com/MaLunan/malunan.github.io.git
-          git remote add origin ${remote_addr}
-          git push -f $remote_addr HEAD:$deploy_branch  # 推送到github $deploy_branch分支
-          cd -
-          rm -rf $dist_path
+
+          $remote_addr = "https://github.com/MaLunan/malunan.github.io.git"
+          git remote add origin $remote_addr
+          git push -f $remote_addr HEAD:$deploy_branch
+
+          Set-Location -Path -
+          Remove-Item -Recurse -Force $dist_path
