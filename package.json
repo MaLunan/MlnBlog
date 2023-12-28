@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "set NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=4096 ./node_modules/vuepress/cli.js dev docs",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=4096 ./node_modules/vuepress/cli.js build docs",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=4096 ./node_modules/vuepress/cli.js build docs",
     "predev": "set NODE_OPTIONS=--openssl-legacy-provider &&node utils/check.js dev && vdoing",
-    "prebuild": "set NODE_OPTIONS=--openssl-legacy-provider &&node utils/check.js build && vdoing",
+    "prebuild": "export NODE_OPTIONS=--openssl-legacy-provider &&node utils/check.js build && vdoing",
     "deploy": "bash deploy.sh",
     "bulids": "bash bulids.sh",
     "editFm": "node utils/editFrontmatter.js",
