@@ -71,6 +71,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         ],
       },
       {
+        text: '爱好',
+        items: [
+          { text: '剪辑', link: '/pages/d00b58/' },
+        ],
+      },
+      {
         text: '技术',
         link: '/technology/',
         items: [
