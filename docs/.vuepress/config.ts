@@ -6,7 +6,7 @@ import { defineConfig4CustomTheme, UserPlugins } from 'vuepress/config'
 import { VdoingThemeConfig } from 'vuepress-theme-vdoing/types'
 import dayjs from 'dayjs'
 import baiduCode from './config/baiduCode' // 百度统计hm码
-import htmlModules from './config/htmlModules' // 自定义插入的html块
+// import htmlModules from './config/htmlModules' // 自定义插入的html块
 
 const DOMAIN_NAME = 'zmln1021.com' // 域名 (不带https)
 const WEB_SITE = `https://${DOMAIN_NAME}` // 网址
@@ -70,12 +70,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
           },
         ],
       },
-      {
-        text: '爱好',
-        items: [
-          { text: '剪辑', link: '/pages/d00b58/' },
-        ],
-      },
+      
       {
         text: '技术',
         link: '/technology/',
@@ -87,14 +82,9 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         ],
       },
       {
-        text: '更多',
-        link: '/more/',
+        text: '爱好',
         items: [
-          { text: '学习', link: '/pages/f2a556/' },
-          { text: '面试', link: '/pages/aea6571b7a8bae86/' },
-          { text: '心情杂货', link: '/pages/2d615df9a36a98ed/' },
-          { text: '实用技巧', link: '/pages/baaa02/' },
-          { text: '友情链接', link: '/friends/' },
+          { text: '剪辑', link: '/pages/d00b58/' },
         ],
       },
       { text: '关于', link: '/about/' },
@@ -190,7 +180,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     blogger: {
       avatar: '/img/logo.jpg',
       name: 'Lunan Ma',
-      slogan: '努力搬砖中~',
+      slogan: '升职加薪搞钱~',
     },
 
     // 社交图标 (显示于博主信息栏和页脚栏。内置图标：https://doc.malunan.com/pages/a20ce8/#social)
@@ -219,7 +209,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     footer: {
       createYear: 2019, // 博客创建年份
       copyrightInfo:
-        'Evan Xu | <a href="https://github.com/MaLunan/vuepress-theme-vdoing/blob/master/LICENSE" target="_blank">MIT License</a>', // 博客版权信息、备案信息等，支持a标签或换行标签</br>
+        'LuNan Ma | <a href="https://github.com/MaLunan/vuepress-theme-vdoing/blob/master/LICENSE" target="_blank">MIT License</a>', // 博客版权信息、备案信息等，支持a标签或换行标签</br>
     },
 
     // 扩展自动生成frontmatter。（当md文件的frontmatter不存在相应的字段时将自动添加。不会覆盖已有的数据。）
@@ -231,7 +221,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     },
 
     // 自定义hmtl(广告)模块
-    htmlModules
+    // htmlModules
   },
 
   // 注入到页面<head>中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
@@ -368,6 +358,16 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         },
       },
     ],
+    [
+      'dynamic-title',
+      {
+         showIcon: '/favicon.ico',
+         showText: '٩(◕‿◕｡)۶谢谢你来看我！',
+         hideIcon: '/failure.ico',
+         hideText: '(ಥ﹏ಥ)不要走呀！',
+         recoverTime: 2000,
+      },
+   ],
   ],
 
   markdown: {
